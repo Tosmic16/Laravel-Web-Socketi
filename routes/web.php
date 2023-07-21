@@ -1,6 +1,7 @@
 <?php
 
-use App\Events\TestGroundEvent;
+use App\Events\ChatMessageEvent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,14 @@ Route::get('/', function () {
 Route::get('/ws', function () {
     return view('websocket');
 });
-Route::get('/testground', function () {
-    event(new TestGroundEvent());
+Route::post('/chat-message', function (Request $request) {
+    var_dump($request->all());
+   
+  event(  new ChatMessageEvent($request->all()));
     return null;
+});
+
+Route::get('/testground', function(){
+ event(new ChatMessageEvent('hello'));
+ return null;
 });

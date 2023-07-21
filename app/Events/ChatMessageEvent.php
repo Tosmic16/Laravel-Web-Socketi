@@ -10,16 +10,18 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class TestGroundEvent implements ShouldBroadcast
+class ChatMessageEvent implements ShouldBroadcast
 {
     use SerializesModels;
+
+    // public $message;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public array $data)
     {
-        //
+      
     }
 
     /**
@@ -29,7 +31,7 @@ class TestGroundEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-          return  new Channel('public.testground.1');
+          return  new Channel('public.chat.1');
     }
 
     /**
@@ -37,11 +39,12 @@ class TestGroundEvent implements ShouldBroadcast
  */
 public function broadcastAs(): string
 {
-    return 'testground';
+    return 'chat.message';
 }
 
-public function broadcastWith(): array
-{
-    return ['id' => 12];
-}
+// public function broadcastWith(): array
+// {
+//     return ['id' => 1];
+// }
+
 }
