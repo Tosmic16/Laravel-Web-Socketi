@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ws', function () {
+    return view('websocket');
+});
 Route::get('/testground', function () {
     event(new TestGroundEvent());
     return null;
