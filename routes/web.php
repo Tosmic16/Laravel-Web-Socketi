@@ -28,7 +28,3 @@ Route::post('/chat-message', function (Request $request) {
     return null;
 });
 
-Route::get('/testground', function(){
- event(new ChatMessageEvent('hello'));
- return null;
-});
